@@ -27,11 +27,17 @@ features_train, features_test, targets_train, targets_test = train_test_split(fi
 model = LogisticRegression()
 model.fit(features_train, targets_train)
 prediction = model.predict(features_test)
-# calculate the accuracy of the trained model on the testing set
-accuracy = accuracy_score(targets_test, prediction)  # Fix: Use targets_test instead of targets_train
-print("Accuracy of the Logistic Regression:", accuracy)
-#  K -NN mdoel (SK learn ) on the training set
-knn = KNeighborsClassifier(n_neighbors=3)
-# Train the model using the training set
-knn.fit(features_train ,targets_train)
-# 
+
+# Train a k-NN model (using Sklearn) with different hyperparameters on the training set.
+#  define values for different hyperparameters
+n_neighbors_values = [5, 3, 7]
+for n_neighbors in n_neighbors_values:
+    #  K -NN model (SK learn ) on the training set
+    knn = KNeighborsClassifier(n_neighbors=3)
+
+    # Train the model using the training set
+    knn.fit(features_train, targets_train)
+
+    # calculate the accuracy of the trained model on the testing set
+    accuracy = accuracy_score(targets_test, prediction)  # Fix: Use targets_test instead of targets_train
+    print("Accuracy of the Logistic Regression:", accuracy)
