@@ -1,5 +1,3 @@
-
-
 import sklearn
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
