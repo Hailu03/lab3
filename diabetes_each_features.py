@@ -1,9 +1,9 @@
-import sklearn
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
+import numpy as np
 
 # load dataset
 diabetes = load_diabetes()
@@ -22,9 +22,15 @@ def predict(model, features_test):
 features = diabetes.data
 targets = diabetes.target
 
+# shuffle the dataset
+randNum = np.arange(features.shape[0])
+np.random.shuffle(randNum)
+features = features[randNum]
+targets = targets[randNum]
+
 # get the feature names
 feature_names = diabetes.feature_names
-colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black', 'gray']
+colors = ['red', 'green', 'blue', 'red', 'orange', 'purple', 'pink', 'brown', 'gray', 'violet']
 
 # training dataset in each feature
 for i in range(0, 10):
@@ -52,6 +58,6 @@ for i in range(0, 10):
     plt.scatter(feature_test, target_test, color=colors[i], label='Data') # plot the data
     plt.xlabel('Feature') # set the label of the x-axis 
     plt.ylabel('Target') # set the label of the y-axis
-    plt.plot(feature_test, pred, color='green', linewidth=3) # plot the line
+    plt.plot(feature_test, pred, color='black', linewidth=3) # plot the line
     plt.show() # show the figure
 
