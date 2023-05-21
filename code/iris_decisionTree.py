@@ -1,13 +1,14 @@
 import numpy as np
 from sklearn.datasets import load_iris
-from sklearn.neighbors import KNeighborsClassifier
+# decision tree classifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # load dataset
 iris = load_iris()
 
-# describe dataset
+# describe
 print(iris.DESCR)
 
 # Filter the data for two specific classes
@@ -24,15 +25,12 @@ y = y[randNum]
 features_train, features_test, targets_train, targets_test = train_test_split(X,y, test_size=0.2)
 
 # create model
-n_neighbors = 3
-knn = KNeighborsClassifier(n_neighbors=n_neighbors)
-
-# Train the model using the training set
-knn.fit(features_train, targets_train)
+clf = DecisionTreeClassifier()
+clf.fit(features_train, targets_train) # Train the model using the training set
 
 # predict the class labels for the test set
-prediction = knn.predict(features_test)
+prediction = clf.predict(features_test)
 
 # calculate the accuracy of the trained model on the testing set
 accuracy = accuracy_score(targets_test, prediction)
-print(f"Accuracy of the KNN Classifier: {accuracy*100}%")
+print(f"Accuracy of the Decision Tree Classifier: {accuracy*100}%")

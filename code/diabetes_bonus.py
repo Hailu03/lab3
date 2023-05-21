@@ -38,6 +38,5 @@ y_pred_train = np.dot(X_train, weights)
 X_test = np.hstack((np.ones((feature_test.shape[0], 1)), feature_test))
 y_pred_test = np.dot(X_test, weights)
 
-# Print the predicted values on the testing set
-print("Predicted values on the testing set:")
-print(mean_squared_error(target_test, y_pred_test))
+# calculate mean squared error
+print("MSE: " ,mean_squared_error(target_test, y_pred_test))

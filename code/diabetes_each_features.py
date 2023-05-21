@@ -33,6 +33,7 @@ feature_names = diabetes.feature_names
 colors = ['red', 'green', 'blue', 'red', 'orange', 'purple', 'pink', 'brown', 'gray', 'violet']
 
 # training dataset in each feature
+plt.figure(figsize=(16, 10)) # set the size of the figure
 for i in range(0, 10):
     feature = features[:, i] # get the feature
 
@@ -53,11 +54,13 @@ for i in range(0, 10):
     print(f"Error of the Linear Regresson for feature {i+1}: ", mean_squared_error(target_test, pred))
 
     # plot the data
-    plt.figure(figsize=(10, 5)) # set the size of the figure
+    plt.subplot(2,5,i+1)
     plt.title(f"Feature {i+1}: {feature_names[i]}") # set the title of the figure
     plt.scatter(feature_test, target_test, color=colors[i], label='Data') # plot the data
     plt.xlabel('Feature') # set the label of the x-axis 
     plt.ylabel('Target') # set the label of the y-axis
     plt.plot(feature_test, pred, color='black', linewidth=3) # plot the line
-    plt.show() # show the figure
+    plt.tight_layout()
+
+plt.show() # show the figure
 
